@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+
+	<select id="jointable" resultType="com.spring.board.vo.UserVo" parameterType="String">
+		select 
+			 *
+		from
+			 USER_INFO 
+		WHERE
+			 USER_ID = #{creator}
+	</select>
+	
+
+	<select id="idCheck" resultType="com.spring.board.vo.UserVo">
+		SELECT
+			*
+		FROM
+		     USER_INFO
+		WHERE
+			USER_ID = #{USER_ID}
+	</select>
+
+	<select id="pwCheck" resultType="com.spring.board.vo.UserVo">
+		SELECT 
+			*
+		FROM 
+			USER_INFO 
+		WHERE 
+			USER_ID = #{USER_ID} 
+		AND 
+			USER_PW = #{USER_PW}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO
+				    USER_INFO
+	    (
+		 USER_ID
+		 ,USER_PW
+		 ,USER_NAME
+		 ,USER_PHONE1
+		 ,USER_PHONE2
+		 ,USER_PHONE3
+		 ,USER_ADDR1
+		 ,USER_ADDR2
+		 ,USER_COMPANY
+	    )
+	 	VALUES 
+	 		  (
+	 			#{USER_ID}
+	 			,#{USER_PW}
+	 			,#{USER_NAME}
+	 			,#{USER_PHONE1}
+	 			,#{USER_PHONE2}
+	 			,#{USER_PHONE3}
+				,#{USER_ADDR1}
+	 			,#{USER_ADDR2}
+	 			,#{USER_COMPANY}
+			  )
+	</insert>
+
+	<select id="phonelist" resultType="com.spring.board.vo.BoardTypeVo">
+		SELECT
+			   *
+		FROM
+			   com_code
+		WHERE
+			   CODE_TYPE = 'phone'
+	</select>
+	
+	
+
+</mapper>
